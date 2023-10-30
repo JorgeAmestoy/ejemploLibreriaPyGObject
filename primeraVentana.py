@@ -9,10 +9,8 @@ class primeraVentana(Gtk.Window):
 
         caja = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing = 10)
 
-
-
         imagen = Gtk.Image()
-        imagen.set_from_file("fotoluci2.png")
+        imagen.set_from_file("paisaje.png")
         caja.pack_start(imagen,True,True,5)#expand,fill,padding. Buscar diferencias.
         lblEtiqueta = Gtk.Label(label="Hola a todos")
         caja.pack_start(lblEtiqueta,False,False,5)
