@@ -4,32 +4,26 @@ import gi
 gi.require_version("Gtk","3.0")
 from gi.repository import Gtk, Gdk
 
-class ejemploBoxLayout(Gtk.Window):
+class BoxConBotones(Gtk.Box):
     def __init__(self):
         super().__init__()
-        self.set_title("Exemplo Box layout")
-
-        cajaH = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing = 10)
 
 
+        self.set_orientation(Gtk.Orientation.HORIZONTAL)
 
         cajaV1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing = 4)
         cajaV1.pack_start(self.boton_con_color("red"), True, True,2)
         cajaV1.pack_start(self.boton_con_color("purple"), True, True, 2)
         cajaV1.pack_start(self.boton_con_color("yellow"), True, True, 2)
-        cajaH.pack_start(cajaV1, True, True, 2)
+        self.pack_start(cajaV1, True, True, 2)
 
-        cajaH.pack_start(self.boton_con_color("green"), True, True,2)
+        self.pack_start(self.boton_con_color("green"), True, True,2)
 
         cajaV2 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing = 10)
         cajaV2.pack_start(self.boton_con_color("blue"), True, True, 2)
         cajaV2.pack_start(self.boton_con_color("orange"), True, True, 2)
-        cajaH.pack_start(cajaV2, True, True, 2)
+        self.pack_start(cajaV2, True, True, 2)
 
-        self.add(cajaH)
-        self.connect("delete-event",
-                     Gtk.main_quit)
-        self.show_all()
 
     def on_debuxa(self,control,cr,datos):
         contexto = control.get_style_context()
@@ -62,6 +56,6 @@ class ejemploBoxLayout(Gtk.Window):
         etiqueta.set_text(cuadroDeTexto.get_text())
 
 if __name__ =="__main__":
-    ejemploBoxLayout()
+    BoxConBotones()
     Gtk.main()
 
