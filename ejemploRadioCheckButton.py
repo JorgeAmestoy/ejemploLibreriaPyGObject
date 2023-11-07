@@ -10,18 +10,24 @@ class primeraVentana(Gtk.Window):
         caja = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing = 10)
 
 
+        frameMarco = Gtk.Frame(label = "Opciones excluyentes")
+        caja.pack_start(frameMarco, False, False, 2)
+        cajaRadioButton = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+
+
         rbtBoton1 = Gtk.RadioButton.new_with_label_from_widget(None,"Boton 1")
         rbtBoton1.connect("toggled", self.on_rbtBoton_toggled,"1")#El evento de estos controles es el toggled
-        caja.pack_start(rbtBoton1,"False", "False", 2)
+        cajaRadioButton.pack_start(rbtBoton1,"False", "False", 2)
 
         rbtBoton2 = Gtk.RadioButton.new_from_widget(rbtBoton1)
         rbtBoton2.set_label("Boton 2")
         rbtBoton2.connect("toggled", self.on_rbtBoton_toggled,"2")
-        caja.pack_start(rbtBoton2, "False", "False", 2)#Para meterlo en la caja
+        cajaRadioButton.pack_start(rbtBoton2, "False", "False", 2)#Para meterlo en la caja
 
         rbtBoton3= Gtk.RadioButton.new_with_mnemonic_from_widget(rbtBoton1, "_Boton 3")#ES otra forma. Con una combinacion de teclas me permite activar el boton3, en este caso pulsando alt+ b en el teclado, te va a la opcion 3
-        rbtBoton3.connect("toggled", self.on_rbtBoton_toggled, "3")
-        caja.pack_start(rbtBoton3, "False", "False", 2)
+        rbtBoton3.connect("toggled", self.on_rbtBoton_toggled,"3")
+        cajaRadioButton.pack_start(rbtBoton3, "False", "False", 2)
+        frameMarco.add(cajaRadioButton)
 
         checkBoton4 = Gtk.CheckButton()
         checkBoton4.set_label("Check 4")
@@ -49,11 +55,11 @@ class primeraVentana(Gtk.Window):
             print("Boton ", numero, "foi desactivado")
 
 
-    def on_checkBoton_toggled(self, chkBoton):
-        if chkBoton.get_active():
-            print("CheckButton activado: ", chkBoton.get_label())
+    def on_checkBoton_toggled(self, checkBoton):
+        if checkBoton.get_active():
+            print("CheckButton activado: ", checkBoton.get_label())
         else:
-            print("ChkButton desactivado: ", chkBoton.get_label())
+            print("ChkButton desactivado: ", checkBoton.get_label())
 
 
     def on_btnBoton_clicked(self, boton, etiqueta):
