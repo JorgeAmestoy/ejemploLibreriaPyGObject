@@ -9,6 +9,7 @@ class primeraVentana(Gtk.Window):
 
         caja = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing = 10)
 
+
         rbtBoton1 = Gtk.RadioButton.new_with_label_from_widget(None,"Boton 1")
         rbtBoton1.connect("toggled", self.on_rbtBoton_toggled,"1")#El evento de estos controles es el toggled
         caja.pack_start(rbtBoton1,"False", "False", 2)
@@ -22,17 +23,37 @@ class primeraVentana(Gtk.Window):
         rbtBoton3.connect("toggled", self.on_rbtBoton_toggled, "3")
         caja.pack_start(rbtBoton3, "False", "False", 2)
 
+        checkBoton4 = Gtk.CheckButton()
+        checkBoton4.set_label("Check 4")
+        checkBoton4.connect("toggled", self.on_checkBoton_toggled)
+        caja.pack_start(checkBoton4, False, False,2)
+
+        #Otra forma de hacerlo con el new with label
+        checkBoton5 = Gtk.CheckButton.new_with_label("Check 5")
+        checkBoton5.connect("toggled",self.on_checkBoton_toggled)
+        caja.pack_start(checkBoton5, False, False, 2)
+
+
+
+
         self.add(caja)
 
         self.connect("delete-event",Gtk.main_quit)
         self.show_all()
 
-        #cUando se selecciona una opcion, ocurren  dos "eventos". La opion a se vuelve true y la b, por no pulsarla, false.
+    #Cuando se selecciona una opcion, ocurren  dos "eventos". La opcion a se vuelve true y la b, por no pulsarla, false.
     def on_rbtBoton_toggled(self, boton, numero):
         if boton.get_active():
             print("Boton ", numero, "foi activado")
         else:
             print("Boton ", numero, "foi desactivado")
+
+
+    def on_checkBoton_toggled(self, chkBoton):
+        if chkBoton.get_active():
+            print("CheckButton activado: ", chkBoton.get_label())
+        else:
+            print("ChkButton desactivado: ", chkBoton.get_label())
 
 
     def on_btnBoton_clicked(self, boton, etiqueta):
