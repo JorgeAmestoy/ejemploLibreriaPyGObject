@@ -5,12 +5,12 @@ from gi.repository import Gtk
 class primeraVentana(Gtk.Window):
     def __init__(self):
         super().__init__()
-        self.set_title("Ejemplo expediente academico")
+        self.set_title("Ejemplo expediente académico")
 
         cajaPrincipal = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing = 10)
 
+        #Si hubiese que poner 100 alumnos, habria que buscar forma de repetir esto para no escribirlo 100 veces
         cajaAlumno = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing = 10)
-
         cajaPrincipal.pack_start(cajaAlumno, True, True, 0)
         lblAlumno = Gtk.Label(label="Alumno")
         cajaAlumno.pack_start(lblAlumno, False, True, 2)#Pongo 100 de padding a la label Alumno, es decir, quiero que haya mas espacio a su alrededor
@@ -71,27 +71,32 @@ class primeraVentana(Gtk.Window):
 
         botonGuardar = Gtk.Button(label="Guardar")
         cajaPrincipal.pack_start(botonGuardar, False, False, 4)
+        botonGuardar.connect("clicked", self.on_botonGuardar_clicked)
 
 
-
-
-
-
-
-
-        self.add(cajaPrincipal)#En gtk solo podemos poner una etiqueta..
-
-        self.connect("delete-event",Gtk.main_quit)#se conecta a una funcion cuando ocurre un evento. Cuando cliqueamos en la esquina, creamos un delete-event.
-        #En el Gtk.main_quit no poner los () finales.
+        self.add(cajaPrincipal)
+        self.connect("delete-event",Gtk.main_quit)
         self.show_all()
 
-#el segundo parametro de esta funcion puede ser cualquier nombre para recoger una referencia o control que genero la señal
-#etiqueta es la referencia a lblEtiqueta
-    def on_btnBoton_clicked(self, boton, etiqueta):
-        etiqueta.set_text("Hola alumnos de Gtk")
 
-    def on_txtSaludo_activate(self, cuadroDeTexto, etiqueta):
-        etiqueta.set_text(cuadroDeTexto.get_text())
+    def on_botonGuardar_clicked(self, boton):
+        lista = list()#lista=[]. Esºta sería otra forma de hacerlo.
+        lista.append(self.txtNombre.get_text())
+        lista.append(self.txtApellidos.get_text())
+        modulo = list()
+        modulo.append("Cod")
+        modulo.append(float(self.txtNotaCod.get_text()))
+        modulo.append(self.checkButtonBilingueCod.get_active())#Nos de vuelve si es true o false
+        lista.append(modulo)
+        modulo = list()
+        modulo.append("Prog")
+        modulo.append(float(self.txtNotaProg.get_text()))
+        modulo.append(self.checkButtonBilingueProg.get_active()) #Nos devuelve si es true o false
+        lista.append(modulo)
+        print(lista)
+        return lista
+
+
 
 if __name__ =="__main__":
     primeraVentana()
