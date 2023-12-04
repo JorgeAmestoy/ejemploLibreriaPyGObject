@@ -24,7 +24,9 @@ Spiner..
 el texto en negrilla. EStas propiedades se ven en el [navegador](https://lazka.github.io/pgi-docs/Gtk-3.0/classes/CellRendererText.html) .
  **celda.props.weight_set = Pango.Weight.BOLD** -> Pango es una libreria 
 
-boxCOnBotones no funciona porque lo usamos para importar en otros proectos.
+boxConBotones no funciona porque lo usamos para importar en otros proectos.
+
+
 
 expand: 
 
@@ -32,4 +34,18 @@ fill: No ocupa todo el espacio dispnible si pongo false.
 
 padding:
 
-LOs controles de textos dejarlos crecer(expand true). Cuadros de texto y botones tampoco. PROBAR.<br>
+Los controles de textos dejarlos crecer(expand true). Cuadros de texto y botones tampoco. PROBAR.<br>
+
+
+
+clases Nuevas:
+
+agendaTelefono.py
+
+baseDatosAGendaTelefonica.py
+
+
+https://lazka.github.io/pgi-docs/Gtk-3.0/classes/ListStore.html 
+
+En este link están las referencias de los metodos de liststore. Por ejemplo, **liststore.clear()** y 
+elr emove, que te dice como se usa. ES el que usa el profe en el examen
