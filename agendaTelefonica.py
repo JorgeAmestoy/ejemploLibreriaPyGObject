@@ -125,11 +125,10 @@ class miPrimeraVentana(Gtk.Window):
 
 
     def on_celdaTelefono_edited(self, celda, fila, texto, modelo, columna):# Para editar pulso dos veces en el telefono y me deja escribir. El texto es lo que escribo. El modelo es el modelo de la tabla. La columna es la columna que estoy editando.
-        modelo[fila][columna] = texto
         try:
             bbdd = dbapi.connect("bdListinTelefonico.dat")
             cursor = bbdd.cursor()
-            cursor.execute("""update listaTelefonos set telefono = ? where nome = ?""", (texto, modelo[fila][0]))
+            cursor.execute("""update listaTelefonos set telefono = ? where telefono = ?""",(texto, modelo[fila][2]))# Primeoro hace la consulta y luego la actualiza. El elemento 2 es el telefono.
             bbdd.commit()
             cursor.close()
             bbdd.close()
@@ -137,6 +136,8 @@ class miPrimeraVentana(Gtk.Window):
                print(e)
         except dbapi.DatabaseError as e:
                print(e)
+
+        modelo[fila][columna] = texto
 
 
 if __name__ == "__main__":

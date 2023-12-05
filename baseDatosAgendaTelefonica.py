@@ -17,7 +17,7 @@ except dbapi.DatabaseError as e:
 try:
     for datos in axendaTel:
         c.execute ("""insert into listaTelefonos
-                  values(?, ?, ?)""", datos)
+                  values(?, ?, ?)""", datos)# va linea por linea en la agenda y guarda cada linea en la variable datos. Luego hace el insert en la tabla con los datos de dicha variable.
     bbdd.commit()
 except dbapi.DatabaseError as e:
     print ("Erro o insertar usuarios: "+ e)
