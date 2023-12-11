@@ -1,74 +1,76 @@
-# EJERCICIO EXAMEN
-
-## 1. CREO LA INTERFAZ
-En este programa vamos a trabajar únicamente con el fichero **MAIN** Y CON LA **IU**.
-Añadimos los botones y las cajas de texto que vamos a necesitar.
-
-## 2. FUNCIONALIDAD DE LOS WIDGETS
-
-```
-   val iuScope = rememberCoroutineScope()
-
-    var countingDown by remember { mutableStateOf(false) }
-    var count by remember { mutableStateOf(20) }
-    var puntuacion by remember { mutableStateOf(0) }
-```
-
-Usamos la **iuSCope** para permitir la ejecución continua de coroutines incluso después de recomposiciones.
-Las demás variables son  de estado mutable y almacenan un booleano que indica si hay:
-- una cuenta regresiva en curso
-- un entero que representa el valor actual de la cuenta regresiva
-- un entero que representa la puntuación del usuario.
-
-Así, en el botón de **START**:
-```
-onClick = {
-          countingDown = true
-                 iuScope.launch {
-                    while (count > 0) {
-                          delay(1000)
-                               count--
-                     }
-               }
-         },
-```
-Así, cuando presionarmos el botón, se inicia una cuenta regresiva que disminuirá el valor de count cada segundo hasta llegar a cero, y esta acción está envuelta en una coroutine para no bloquear el hilo principal.
-<br>
-`text = count.toString(),`: convertimos el valor numérico de *count* en una
-de cadena para que 
-pueda ser visualizado en el elemento de texto.<br>
-`text =  fraseActual.value.texto,`: accedemosal valor de la propiedad texto de ese objeto y lo asignamos al texto para
-mostrar en la interfaz 
-
-## FRASES ALEATORIAS
+## TREEVIEW<br>
 
 
-`data class Frase(var texto: String, var verdadero: Boolean)`:
-Definomos una clase de datos llamada Frase par almacenar los datos. Tinene dos propiedades, una de tipo String y otra de tipo Booleano.
+[referencia](./ejemploTreeview.py)<br><br>
+
+**Gtk.ListStore(str,str,str)**
+
+- Uso de **tuplas**,**enumerate**, 
+- **Append** -> soloa admite un parametro. POdemos mandar una lista/tupla de 20 elemetnos
+pero tiene que mandarse como un solo elemento, como una lista vaya. Si la lista es de un solo elemento, igual.
+
+- EN el treeview esta el modelo, luego la vista, el treeview, que sería como la tabla, la columna y la celda. Así,. hay que saber dependiendo del caso,
+con cual de estos vamos a interactuar.
+
+**CellRenderer**: hay varios tipos de este:
+text para texto,
+Pixbuf para imagenes
+Toggle para checkbox, radiobutton
+Combo para combobox.
+Progress, una barra de progreso para porcentajes(es limitado por estar dentro de una tabla)
+Spiner..
+
+**celda.props** -> nos permite acceder a las propiedades de la celda, en exte caso un cellrendeerertext. Por ejemplo, poner
+el texto en negrilla. EStas propiedades se ven en el [navegador](https://lazka.github.io/pgi-docs/Gtk-3.0/classes/CellRendererText.html) .
+ **celda.props.weight_set = Pango.Weight.BOLD** -> Pango es una libreria 
+
+boxCOnBotones no funciona porque lo usamos para importar en otros proectos.
+
+expand: 
+
+fill: No ocupa todo el espacio dispnible si pongo false.
+
+padding:
+
+LOs controles de textos dejarlos crecer(expand true). Cuadros de texto y botones tampoco. PROBAR.<br>
+
+el texto en negrilla. EStas propiedades se ven en el [navegador](https://lazka.github.io/pgi-docs/Gtk-3.0/classes/CellRendererText.html) .
+el texto en negrilla. EStas propiedades se ven en el [navegador](https://lazka.github.io/pgi-docs/Gtk-3.0/classes/CellRendererText.html) .
+ **celda.props.weight_set = Pango.Weight.BOLD** -> Pango es una libreria 
+ **celda.props.weight_set = Pango.Weight.BOLD** -> Pango es una libreria 
 
 
-`var frases: MutableList<Frase> = mutableListOf()`: creamos una lista mutable de frases y la inicializamos con una lista vacía.
+boxCOnBotones no funciona porque lo usamos para importar en otros proectos.
+boxConBotones no funciona porque lo usamos para importar en otros proectos.
 
 
-`var fraseActual: MutableState<Frase> = mutableStateOf(Frase("-", true))`: creamos una variable de estado mutable que almacena una frase y la inicializamos con una frase vacía.
-```
-@Composable
-fun aux() {
-    // introducir frases en la lista
-    frases.add(Frase("el torneo de rugby cinco naciones, ahora es seis naciones", true))
-    frases.add(Frase("en el cielo hay cinco estrellas", false))
-    frases.add(Frase("el dia cinco de diciembre del 2023 es martes", true))
-    frases.add(Frase("cinco más cinco son diez", true))
-    frases.add(Frase("dos mas dos son cinco", false))
-    frases.add(Frase("los elefantes tienen cinco patas", false))
-    frases.add(Frase("las estaciones climáticas son cinco", false))
-    frases.add(Frase("tenemos cinco dedos los humanos", true))
-    frases.add(Frase("cinco días tiene la semana sin el Domingo y el Sábado", true))
-    frases.add(Frase("una gallina pesa menos que cinco toneladas", true))
 
-    // asignar una frase aleatoria
-    fraseActual.value = frases.random()
-}
-```
-Por último, la clase aux es la que se encarga de introducir las frases en la lista y
-de asignar una frase aleatoria a la variable de estado fraseActual.
+
+expand: 
+expand: 
+
+
+fill: No ocupa todo el espacio dispnible si pongo false.
+fill: No ocupa todo el espacio dispnible si pongo false.
+
+
+padding:
+padding:
+
+
+LOs controles de textos dejarlos crecer(expand true). Cuadros de texto y botones tampoco. PROBAR.<br>
+Los controles de textos dejarlos crecer(expand true). Cuadros de texto y botones tampoco. PROBAR.<br>
+
+
+
+clases Nuevas:
+
+agendaTelefono.py
+
+baseDatosAGendaTelefonica.py
+
+
+https://lazka.github.io/pgi-docs/Gtk-3.0/classes/ListStore.html 
+
+En este link están las referencias de los metodos de liststore. Por ejemplo, **liststore.clear()** y 
+elr emove, que te dice como se usa. ES el que usa el profe en el examen
