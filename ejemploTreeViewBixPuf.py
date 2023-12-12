@@ -15,8 +15,8 @@ class primeraVentana(Gtk.Window):
 
         modelo = Gtk.ListStore(str,str)
         modelo.append(("Novo", "document-new"))
-        modelo.append(("Abrir", "document-new"))
-        modelo.append(("Gardar", "document-new"))
+        modelo.append(("Abrir", "document-open"))
+        modelo.append(("Gardar", "document-save"))
 
         treeview = Gtk.TreeView(model=modelo)
         celdaTexto = Gtk.CellRendererText()
